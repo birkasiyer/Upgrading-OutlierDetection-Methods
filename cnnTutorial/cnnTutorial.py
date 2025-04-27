@@ -4,130 +4,99 @@ import numpy as np
 import pandas as pd 
 import seaborn as sns
 import matplotlib.pyplot as plt
+import tensorflow as tf
 from sklearn.metrics import confusion_matrix
-import itertools
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_digits
+import warnings
+warnings.filterwarnings('ignore')
 from keras.api.utils import to_categorical
 from keras.api.models import Sequential
 from keras.api.layers import Dense, Dropout, Flatten, Conv2D, MaxPool2D
-from keras.api.optimizers import RMSprop,Adam
-from keras.api.preprocessing.image import ImageDataGenerator
-from keras.api.callbacks import ReduceLROnPlateau
-import warnings
-warnings.filterwarnings('ignore')
+from keras.api.layers import RandomRotation, RandomZoom, RandomTranslation
+from keras.api.optimizers import Adam
 
-import os
-print(os.listdir("../input"))
+# Veri Seti
+digits = load_digits()
+X = digits.images
+Y = digits.target
 
-train = pd.read_csv("../input/train.csv")
-print(train.shape)
-train.head()
+print("X shape:", X.shape)  # (1797, 8, 8)
+print("Y shape:", Y.shape)  # (1797,)
 
-test= pd.read_csv("../input/test.csv")
-print(test.shape)
-test.head()
+plt.imshow(X[0], cmap='gray')
+plt.title(f"Label: {Y[0]}")
+plt.show()
 
-# put labels into y_train variable
-Y_train = train["label"]
-# Drop 'label' column
-X_train = train.drop(labels = ["label"],axis = 1)
- 
-# visualize number of digits classes
-plt.figure(figsize=(15,7))
-g = sns.countplot(Y_train, palette="icefire")
-plt.title("Number of digit classes")
-Y_train.value_counts()
+# Normalize
+X = X / 16.0
+X = X.reshape(-1, 8, 8, 1)
 
-# Normalize the data
-X_train = X_train / 255.0
-test = test / 255.0
-print("x_train shape: ",X_train.shape)
-print("test shape: ",test.shape)
+# Label Encode
+Y = to_categorical(Y, num_classes=10)
 
-# Reshape
-X_train = X_train.values.reshape(-1,28,28,1)
-test = test.values.reshape(-1,28,28,1)
-print("x_train shape: ",X_train.shape)
-print("test shape: ",test.shape)
+# Train-Test Split
+X_train, X_val, Y_train, Y_val = train_test_split(X, Y, test_size=0.1, random_state=2)
 
-# Label Encoding 
-Y_train = to_categorical(Y_train, num_classes = 10)
+print("X_train shape:", X_train.shape)
+print("X_val shape:", X_val.shape)
+print("Y_train shape:", Y_train.shape)
+print("Y_val shape:", Y_val.shape)
 
-# Split the train and the validation set for the fitting
-from sklearn.model_selection import train_test_split
-X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, test_size = 0.1, random_state=2)
-print("x_train shape",X_train.shape)
-print("x_test shape",X_val.shape)
-print("y_train shape",Y_train.shape)
-print("y_test shape",Y_val.shape)
-
+# Model
 model = Sequential()
-#
-model.add(Conv2D(filters = 8, kernel_size = (5,5),padding = 'Same', 
-                 activation ='relu', input_shape = (28,28,1)))
+
+# Data Augmentation Katmanları
+model.add(RandomRotation(0.05))          # %5 rotation
+model.add(RandomZoom(0.1))                # %10 zoom
+model.add(RandomTranslation(0.1, 0.1))    # %10 width ve height shift
+
+# Conv2D Katmanları
+model.add(Conv2D(filters=8, kernel_size=(3,3), padding='same', activation='relu', input_shape=(8,8,1)))
 model.add(MaxPool2D(pool_size=(2,2)))
 model.add(Dropout(0.25))
-#
-model.add(Conv2D(filters = 16, kernel_size = (3,3),padding = 'Same', 
-                 activation ='relu'))
-model.add(MaxPool2D(pool_size=(2,2), strides=(2,2)))
+
+model.add(Conv2D(filters=16, kernel_size=(3,3), padding='same', activation='relu'))
+model.add(MaxPool2D(pool_size=(2,2)))
 model.add(Dropout(0.25))
-# fully connected
+
 model.add(Flatten())
-model.add(Dense(256, activation = "relu"))
+model.add(Dense(64, activation="relu"))
 model.add(Dropout(0.5))
-model.add(Dense(10, activation = "softmax"))
+model.add(Dense(10, activation="softmax"))
 
-# Define the optimizer
-optimizer = Adam(lr=0.001, beta_1=0.9, beta_2=0.999)
+# Compile
+optimizer = Adam(learning_rate=0.001)
+model.compile(optimizer=optimizer, loss="categorical_crossentropy", metrics=["accuracy"])
 
-# Compile the model
-model.compile(optimizer = optimizer , loss = "categorical_crossentropy", metrics=["accuracy"])
-epochs = 10  # for better result increase the epochs
-batch_size = 250
+# Eğitim
+epochs = 15
+batch_size = 32
 
-datagen = ImageDataGenerator(
-        featurewise_center=False,  # set input mean to 0 over the dataset
-        samplewise_center=False,  # set each sample mean to 0
-        featurewise_std_normalization=False,  # divide inputs by std of the dataset
-        samplewise_std_normalization=False,  # divide each input by its std
-        zca_whitening=False,  # dimesion reduction
-        rotation_range=5,  # randomly rotate images in the range 5 degrees
-        zoom_range = 0.1, # Randomly zoom image 10%
-        width_shift_range=0.1,  # randomly shift images horizontally 10%
-        height_shift_range=0.1,  # randomly shift images vertically 10%
-        horizontal_flip=False,  # randomly flip images
-        vertical_flip=False)  # randomly flip images
+history = model.fit(X_train, Y_train,
+                    epochs=epochs,
+                    batch_size=batch_size,
+                    validation_data=(X_val, Y_val))
 
-datagen.fit(X_train)
-
-# Fit the model
-history = model.fit_generator(datagen.flow(X_train,Y_train, batch_size=batch_size),
-                              epochs = epochs, validation_data = (X_val,Y_val), steps_per_epoch=X_train.shape[0] // batch_size)
-
-# Plot the loss and accuracy curves for training and validation 
-plt.plot(history.history['val_loss'], color='b', label="validation loss")
-plt.title("Test Loss")
-plt.xlabel("Number of Epochs")
+# Loss Grafiği
+plt.plot(history.history['val_loss'], color='b', label="Validation Loss")
+plt.plot(history.history['loss'], color='r', label="Training Loss")
+plt.title("Model Loss")
+plt.xlabel("Epoch")
 plt.ylabel("Loss")
 plt.legend()
 plt.show()
 
-# confusion matrix
-import seaborn as sns
-# Predict the values from the validation dataset
+# Prediction ve Confusion Matrix
 Y_pred = model.predict(X_val)
-# Convert predictions classes to one hot vectors 
-Y_pred_classes = np.argmax(Y_pred,axis = 1) 
-# Convert validation observations to one hot vectors
-Y_true = np.argmax(Y_val,axis = 1) 
-# compute the confusion matrix
-confusion_mtx = confusion_matrix(Y_true, Y_pred_classes) 
-# plot the confusion matrix
-f,ax = plt.subplots(figsize=(8, 8))
-sns.heatmap(confusion_mtx, annot=True, linewidths=0.01,cmap="Greens",linecolor="gray", fmt= '.1f',ax=ax)
+Y_pred_classes = np.argmax(Y_pred, axis=1)
+Y_true = np.argmax(Y_val, axis=1)
+
+confusion_mtx = confusion_matrix(Y_true, Y_pred_classes)
+
+plt.figure(figsize=(8,8))
+sns.heatmap(confusion_mtx, annot=True, linewidths=0.01, cmap="Greens", linecolor="gray", fmt='.1f')
 plt.xlabel("Predicted Label")
 plt.ylabel("True Label")
 plt.title("Confusion Matrix")
 plt.show()
-
-
