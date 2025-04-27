@@ -106,7 +106,7 @@ tuner = kt.RandomSearch(
     executions_per_trial=3,
     directory='my_dir',
     project_name='digit_classifier',
-    overwrite=True
+    overwrite=False
 )
 
 tuner.search(X_train_combined, y_train, epochs=20, batch_size=32, validation_data=(X_test_combined, y_test), verbose=1)
