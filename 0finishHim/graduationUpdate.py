@@ -207,6 +207,23 @@ cnn_precision = precision_score(y_true, y_pred_classes, average='weighted')
 cnn_recall = recall_score(y_true, y_pred_classes, average='weighted')
 cnn_f1 = f1_score(y_true, y_pred_classes, average='weighted')
 
+# Ayrıştırılmış doğruluk metrikleri ekleniyor
+# Normal rakamlar için doğruluk (0-9 sınıfları)
+normal_indices = np.where(y_true != 10)[0]
+normal_accuracy = accuracy_score(y_true[normal_indices], y_pred_classes[normal_indices])
+
+# Aykırı değerler için doğruluk (sadece sınıf 10)
+# Bu, aykırı değerlerin doğru tespit edilme oranını gösterir
+outlier_indices = np.where(y_true == 10)[0]
+if len(outlier_indices) > 0:  # Eğer test setinde aykırı değer varsa
+    outlier_accuracy = accuracy_score(y_true[outlier_indices], y_pred_classes[outlier_indices])
+else:
+    outlier_accuracy = 0.0
+
+# Aykırı değer tespiti için precision ve recall ekleniyor
+outlier_precision = precision_score(y_true == 10, y_pred_classes == 10)  # Gerçek aykırı değer olanlar içinden doğru tahmin edilenlerin oranı
+outlier_recall = recall_score(y_true == 10, y_pred_classes == 10)  # Aykırı değer olarak tahmin edilenler içinden gerçekten aykırı değer olanların oranı
+
 # Confusion Matrix - Tutorial'a göre eklendi
 confusion_mtx = confusion_matrix(y_true, y_pred_classes)
 
@@ -241,6 +258,10 @@ print(f"CNN Test Accuracy: {test_accuracy:.4f}")
 print(f"CNN Precision: {cnn_precision:.4f}")
 print(f"CNN Recall: {cnn_recall:.4f}")
 print(f"CNN F1-Score: {cnn_f1:.4f}")
+print(f"CNN Normal Digits Accuracy: {normal_accuracy:.4f}")
+print(f"CNN Outlier Detection Accuracy: {outlier_accuracy:.4f}")
+print(f"CNN Outlier Precision: {outlier_precision:.4f}")
+print(f"CNN Outlier Recall: {outlier_recall:.4f}")
 print(f"Elliptic Envelope Only Outliers: {len(eliptik_only_outliers)}")
 print(f"Isolation Forest Only Outliers: {len(iso_only_outliers)}")
 print(f"OCSVM Only Outliers: {len(ocsvm_only_outliers)}")
