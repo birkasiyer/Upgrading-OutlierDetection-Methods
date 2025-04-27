@@ -12,9 +12,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
 
 import tensorflow as tf
-from keras.models import Model
-from keras.layers import Input, Dense, Dropout  
-from keras.regularizers import l2 
+from keras.api.models import Model
+from keras.api.layers import Input, Dense, Dropout  
+from keras.api.regularizers import l2 
 
 palette = ['#00777F', '#5BABF5', '#AADEFE', '#EAAC9F', '#8AA0AF']
 sns.set_theme(context='notebook', palette=palette, style='darkgrid')
