@@ -1,0 +1,365 @@
+**CONTENTS**
+
+ABSTRACT......................................................................................i
+ABSTRACT......................................................................................ii
+THANKS TO.....................................................................................iii
+FORM OF DECLARATION...........................................................................iv
+CONTENTS......................................................................................v
+INDEX OF TABLES...............................................................................vii
+INDEX OF FIGURES..............................................................................viii
+INDEX OF IMAGERY AND ABBREVIATIONS............................................................ix
+
+1. INTRODUCTION...............................................................................1
+
+2. GENERAL INFORMATION........................................................................5
+2.1. Outlier Detection (Aykırı Değer Tespiti).................................................5
+    2.1.1. Types of Outliers......................................................................5
+    2.1.2. Fundamental Approaches.................................................................6
+2.2. Machine Learning Algorithms Used.........................................................7
+    2.2.1. One-Class Support Vector Machine (OCSVM)...............................................7
+    2.2.2. Local Outlier Factor (LOF).............................................................8
+    2.2.3. Isolation Forest.......................................................................9
+    2.2.4. Elliptic Envelope......................................................................10
+2.3. Deep Learning and Convolutional Neural Networks..........................................11
+    2.3.1. CNN Architecture.......................................................................11
+    2.3.2. Data Augmentation Techniques...........................................................12
+    2.3.3. Autoencoder Approach...................................................................12
+2.4. Hybrid Modeling Approach.................................................................13
+    2.4.1. Two-Stage System Design................................................................13
+    2.4.2. Feature Engineering....................................................................14
+2.5. Evaluation Metrics.......................................................................14
+2.6. Datasets and Application Areas...........................................................15
+    2.6.1. MNIST Digits Dataset...................................................................15
+    2.6.2. Tutorial Datasets......................................................................16
+
+3. MATERIAL AND METHOD........................................................................17
+3.1. Sort of the Research.....................................................................17
+3.2. Model of the Research....................................................................18
+    3.2.1. Phase 1: Foundation Learning (Tutorial Phase)..........................................18
+    3.2.2. Phase 2: Algorithm Comparison and Analysis.............................................19
+    3.2.3. Phase 3: Advanced Hybrid System Development............................................19
+3.2.4. Phase 4: System Integration and Modularization.........................................20
+3.3. Location and Time/Date of the Research...................................................20
+3.4. The Universe and Sampling of the Research................................................21
+    3.4.1. Primary Dataset Universe...............................................................21
+    3.4.2. Sampling Strategy......................................................................21
+    3.4.3. Tutorial Dataset Universe..............................................................22
+3.5. Data Assembling Tools....................................................................22
+    3.5.1. Data Loading and Preprocessing.........................................................22
+    3.5.2. Data Preprocessing Pipeline............................................................23
+    3.5.3. Model Implementation Tools.............................................................23
+    3.5.4. Evaluation and Visualization Tools.....................................................24
+3.6. Data Analysis............................................................................24
+    3.6.1. Exploratory Data Analysis..............................................................24
+    3.6.2. Algorithm Performance Analysis.........................................................25
+    3.6.3. Hybrid System Analysis.................................................................25
+    3.6.4. Statistical Validation.................................................................25
+    3.6.5. Visualization and Reporting............................................................26
+
+4. FINDINGS...................................................................................27
+4.1. Dataset Characteristics and Preprocessing Results........................................27
+    4.1.1. Data Preprocessing Outcomes............................................................28
+4.2. Individual Algorithm Performance Analysis................................................28
+    4.2.1. One-Class Support Vector Machine (OCSVM) Results.......................................29
+    4.2.2. Local Outlier Factor (LOF) Results.....................................................30
+    4.2.3. Isolation Forest Results...............................................................30
+    4.2.4. Elliptic Envelope Results..............................................................31
+4.3. Hybrid System Development Results........................................................31
+    4.3.1. CNN Architecture Performance...........................................................31
+    4.3.2. Per-Digit Classification Analysis......................................................32
+    4.3.3. Outlier Detection Performance..........................................................33
+4.4. Comparative Analysis Results.............................................................33
+    4.4.1. Algorithm Accuracy Comparison..........................................................33
+    4.4.2. Outlier Detection Count Analysis.......................................................34
+    4.4.3. Unique Contribution Analysis...........................................................34
+4.5. Training Dynamics and Convergence Analysis...............................................35
+    4.5.1. Learning Progression...................................................................35
+    4.5.2. Loss Function Analysis.................................................................35
+4.6. Confusion Matrix Analysis................................................................36
+    4.6.1. Perfect Classifications................................................................36
+    4.6.2. Common Misclassification Patterns......................................................36
+    4.6.3. Outlier Class Performance..............................................................36
+4.7. Visualization and Spatial Distribution Analysis..........................................37
+    4.7.1. Algorithm Coverage Patterns............................................................37
+    4.7.2. Spatial Complementarity................................................................37
+4.8. Performance Validation and Robustness....................................................38
+    4.8.1. Training Stability.....................................................................38
+    4.8.2. Generalization Evidence................................................................38
+
+5. DISCUSSION.................................................................................39
+5.1. Performance Comparison with Existing Literature..........................................39
+    5.1.1. Traditional Methods Performance........................................................39
+    5.1.2. Deep Learning Performance Context......................................................40
+    5.1.3. Comparison with Medical Domain Applications............................................41
+5.2. Algorithmic Behavior Analysis............................................................42
+    5.2.1. Class-Specific Outlier Distribution....................................................42
+    5.2.2. Complementary Detection Patterns.......................................................42
+    5.2.3. Precision-Recall Trade-off Analysis....................................................43
+5.3. Methodological Insights and Implications.................................................43
+    5.3.1. Feature Engineering Effectiveness......................................................43
+    5.3.2. Scalability and Practical Considerations...............................................44
+5.4. Theoretical Implications.................................................................44
+    5.4.1. Dataset Size and Method Selection......................................................44
+    5.4.2. Complementarity in Anomaly Detection...................................................45
+5.5. Limitations and Contextual Considerations................................................45
+    5.5.1. Dataset-Specific Limitations...........................................................45
+    5.5.2. Generalizability Concerns..............................................................46
+5.6. Implications for Future Research.........................................................46
+    5.6.1. Hybrid Architecture Development........................................................46
+    5.6.2. Evaluation Methodology Enhancement.....................................................47
+5.7. Practical Applications and Industry Relevance............................................47
+    5.7.1. Method Selection Guidelines............................................................47
+    5.7.2. System Architecture Considerations.....................................................48
+
+6. RESULTS AND SUGGESTIONS....................................................................49
+6.1. Principal Research Results...............................................................49
+    6.1.1. Algorithmic Performance Outcomes.......................................................49
+    6.1.2. Hybrid System Integration Results......................................................50
+    6.1.3. Methodological Contributions...........................................................51
+6.2. Practical Implications and Applications..................................................51
+    6.2.1. Industry Applications..................................................................51
+    6.2.2. Academic and Research Applications.....................................................52
+6.3. Theoretical and Scientific Contributions.................................................53
+    6.3.1. Understanding Method Complementarity...................................................53
+    6.3.2. Hybrid System Design Principles........................................................53
+6.4. Limitations and Constraints..............................................................54
+    6.4.1. Dataset-Specific Limitations...........................................................54
+    6.4.2. Methodological Constraints.............................................................54
+6.5. Recommendations for Future Research......................................................55
+    6.5.1. Short-Term Research Directions.........................................................55
+    6.5.2. Medium-Term Research Objectives........................................................55
+    6.5.3. Long-Term Strategic Directions.........................................................56
+6.6. Practical Implementation Suggestions.....................................................56
+    6.6.1. For Practitioners and Industry.........................................................56
+    6.6.2. For Researchers and Academics..........................................................57
+6.7. Conclusion and Future Outlook............................................................57
+
+RESOURCES.....................................................................................58
+
+APPENDIX......................................................................................65
+Appx. 1. Code Implementation Details..........................................................65
+Appx. 2. Curriculum Vitae.....................................................................66
+
+
+
+
+
+
+
+
+
+
+Figure 1: Load digits Dataset Importing from sklearn-datasets.................................................................16
+Figure 2: Load breast_cancer Dataset Importing from sklearn-datasets..........................................................16
+
+Figure 3: Import pandas.......................................................................................................17
+Figure 4: Import numpy........................................................................................................17
+Figure 5: StandartScaler for Feature Normalization............................................................................17
+Figure 6: PCA for Visualization and Analysis..................................................................................17
+Figure 7: Feature Engineering.................................................................................................17
+
+Figure 8: Feature Importing Outlier Detection Methods.........................................................................18
+Figure 9: Deep Learning Framework.............................................................................................18
+Figure 10: Hyperparameter Optimization........................................................................................18
+Figure 11: Performance Metrics................................................................................................18
+Figure 12: Import Visualization Libraries.....................................................................................18
+
+Figure 13: Misclassified Digit 5 Samples......................................................................................26
+Figure 14: Misclassified Digit 2 Samples......................................................................................26
+
+Figure 15: Misclassified Digit 8 Samples......................................................................................27
+Figure 16: Misclassified Digit 3 Samples......................................................................................27
+Figure 17: Misclassified Digit 7 Samples......................................................................................27
+
+Figure 18: Misclassified Digit 4 Samples......................................................................................28
+Figure 19: Misclassified Digit 9 Samples......................................................................................28
+Figure 20: Misclassified Digit 6 Samples......................................................................................28
+
+Figure 21: Confusion Matrix...................................................................................................30
+
+
+
+
+
+
+
+
+
+
+
+ APPENDICES
+
+ Appendix A: Dataset and Experimental Setup
+
+ A.1 Dataset Specifications
+- Dataset: MNIST Handwritten Digits (scikit-learn version)
+- Total Samples: 1,797 images
+- Image Dimensions: 8×8 pixels (64 features)
+- Classes: 10 digits (0-9)
+- Data Type: Grayscale images with pixel values 0-16
+- Normalization: StandardScaler for feature scaling, pixel values divided by 16.0 for CNN input
+
+ A.2 Computational Environment
+- Programming Language: Python 3.10.17
+- Key Libraries:
+  - scikit-learn: Machine learning algorithms
+  - Keras/TensorFlow: Deep learning framework
+  - NumPy: Numerical computations
+  - Matplotlib/Seaborn: Data visualization
+  - pandas: Data manipulation
+
+ A.3 Hardware Specifications
+- Platform: Standard CPU-based computation
+- Memory Requirements: Sufficient for dataset size (1,797 samples)
+- Processing: Single-threaded execution
+
+ Appendix B: Model Hyperparameters and Configurations
+
+ B.1 One-Class SVM (OCSVM) Parameters
+param_grid = {
+    'nu': [0.01, 0.05, 0.1, 0.7],
+    'kernel': ['poly', 'rbf', 'sigmoid', 'linear']
+}
+
+- Grid Search: 3-fold cross-validation
+- Best Parameters: kernel='sigmoid', nu=0.01
+- Outlier Threshold: 5th percentile of decision scores
+- Per-class Training: Individual OCSVM models for each digit class
+
+ B.2 Local Outlier Factor (LOF) Configuration
+- n_neighbors: 20
+- contamination: 0.05 (5% expected outliers)
+- Algorithm: Auto-selection based on data characteristics
+
+ B.3 Isolation Forest Parameters
+- n_estimators: 100 trees
+- contamination: 0.05 (5% expected outliers)
+- random_state: 42 (for reproducibility)
+- max_samples: Auto (default)
+
+ B.4 Elliptic Envelope Settings
+- contamination: 0.1 (10% expected outliers)
+- random_state: 2 (for reproducibility)
+- assume_centered: False (default)
+
+ B.5 Hybrid CNN Model Architecture
+
+Input Layers
+- Image Input: (8, 8, 1)
+- Feature Input: (22,) custom features
+
+Data Augmentation
+- RandomRotation: ±0.05 radians
+- RandomZoom: ±0.1 factor
+- RandomTranslation: ±0.1 in both directions
+
+CNN Branch
+- Conv2D: 16 filters, (3,3) kernel, ReLU activation
+- BatchNormalization + MaxPool2D(2,2) + Dropout(0.25)
+- Conv2D: 32 filters, (3,3) kernel, ReLU activation
+- BatchNormalization + MaxPool2D(2,2) + Dropout(0.25)
+- Flatten + Dense(128, ReLU) + Dropout(0.3)
+
+Feature Branch
+- Dense(64, ReLU) + BatchNormalization
+- Dense(32, ReLU)
+
+Combined Layers
+- Concatenate CNN and Feature branches
+- Dense(64, ReLU) + BatchNormalization + Dropout(0.4)
+- Dense(11, Softmax) for 10 digits + 1 outlier class
+
+Training Configuration
+- Optimizer: Adam(lr=0.001)
+- Loss: Categorical Crossentropy
+- Epochs: 20 (with early stopping)
+- Batch Size: 32
+- Callbacks: EarlyStopping(patience=10), ReduceLROnPlateau
+
+ Appendix C: Custom Feature Engineering
+
+ C.1 Extracted Features (22 dimensions)
+1. Spatial Features (16 features):
+   - Horizontal line densities (8 features): Active pixels per row
+   - Vertical line densities (8 features): Active pixels per column
+
+2. Regional Features (7 features):
+   - Center region intensity: Mean of center 2×2 region
+   - Top/Middle/Bottom region intensities
+   - Corner intensities: Top-left, top-right, bottom-left, bottom-right
+
+3. Loop Detection Features (5 features):
+   - Upper loop intensity: Mean of rows 1-3, columns 2-6
+   - Lower loop intensity: Mean of rows 5-7, columns 2-6
+   - Edge intensities: Left edge, right edge, center line
+
+4. Discriminative Features for Digits 1 and 8 (4 features):
+   - Aspect ratio: Height/width ratio of active region
+   - Vertical symmetry: Absolute difference between left and right halves
+   - Center column density: Mean intensity of center columns
+   - Vertical line check: Proportion of rows with active center pixels
+
+ C.2 Feature Engineering Rationale
+The custom features were designed to capture geometric and topological properties that distinguish different digit classes, particularly addressing the confusion between similar-looking digits like 1 and 8.
+
+ Appendix D: Class Weight Configuration
+
+ D.1 Class Weight Strategy
+class_weights = {
+    0: 1.0,   Default weight
+    1: 2.5,   Higher weight for digit 1 (confusion with 8)
+    2: 2.0,   Moderate weight for digit 2
+    3: 1.0,   Default weight
+    4: 1.0,   Default weight
+    5: 1.0,   Default weight
+    6: 1.0,   Default weight
+    7: 1.0,   Default weight
+    8: 2.0,   Higher weight for digit 8 (confusion with 1)
+    9: 1.0,   Default weight
+    10: 1.0   Outlier class
+}
+
+ D.2 Weight Selection Justification
+Higher weights were assigned to digits 1, 2, and 8 based on preliminary analysis showing these classes had higher misclassification rates and confusion with other digits.
+
+ Appendix E: Evaluation Metrics and Formulas
+
+ E.1 Performance Metrics
+- Accuracy: (TP + TN) / (TP + TN + FP + FN)
+- Precision: TP / (TP + FP)
+- Recall: TP / (TP + FN)
+- F1-Score: 2 × (Precision × Recall) / (Precision + Recall)
+
+ E.2 Outlier Detection Evaluation
+- Outlier Precision: Correctly identified outliers / Total predicted outliers
+- Outlier Recall: Correctly identified outliers / Total actual outliers
+- Normal Classification Accuracy: Accuracy on non-outlier samples only
+
+ Appendix F: Experimental Results Details
+
+ F.1 Training History Summary
+Epoch 1: Training Acc: 0.1244, Val Acc: 0.2086
+Epoch 10: Training Acc: 0.7081, Val Acc: 0.7650
+Epoch 20: Training Acc: 0.8375, Val Acc: 0.8693
+Final Loss: Training: 0.6789, Validation: 0.4649
+
+ F.2 Final Performance Summary
+- OCSVM Accuracy: 92.21%
+- LOF Accuracy: 92.32%
+- Isolation Forest Accuracy: 92.43%
+- Elliptic Envelope Accuracy: 87.87%
+- Hybrid CNN Accuracy: 86.93%
+- CNN Outlier Precision: 85.71%
+- CNN Outlier Recall: 65.12%
+
+ Appendix G: Reproducibility Information
+
+ G.1 Version Compatibility
+- Python: 3.10+
+- TensorFlow/Keras: Latest stable API
+- scikit-learn: Latest stable version
+- NumPy: Latest stable version
+- Matplotlib/Seaborn: Latest stable versions
+
+
+
